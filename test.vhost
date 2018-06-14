@@ -1,0 +1,13 @@
+upstream servers {
+    server  localhost:3010;
+    server  localhost:3030;
+}
+
+server {
+    listen  1314;
+    server_name  localhost;
+    location / {
+        proxy_pass http://servers;
+        proxy_connect_timeout 3s;
+    }
+}
